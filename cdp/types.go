@@ -414,9 +414,7 @@ func (n *Node) FullJSPathByID() string {
 // FullJSPath returns the full JSPath for the node, stopping only at the top most
 // document root.
 func (n *Node) FullJSPath() string {
-	a := n.jspath(false, false)
-	fmt.Printf("%s\n", a)
-	return a
+	return n.jspath(false, false)
 }
 
 // xpath builds the xpath string.
