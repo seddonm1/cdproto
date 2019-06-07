@@ -12,7 +12,7 @@ package webaudio
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
+	"github.com/seddonm1/cdproto/cdp"
 )
 
 // EnableParams enables the WebAudio domain and starts sending context

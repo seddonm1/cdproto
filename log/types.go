@@ -5,8 +5,8 @@ package log
 import (
 	"errors"
 
-	"github.com/chromedp/cdproto/network"
-	"github.com/chromedp/cdproto/runtime"
+	"github.com/seddonm1/cdproto/network"
+	"github.com/seddonm1/cdproto/runtime"
 	"github.com/mailru/easyjson"
 	"github.com/mailru/easyjson/jlexer"
 	"github.com/mailru/easyjson/jwriter"

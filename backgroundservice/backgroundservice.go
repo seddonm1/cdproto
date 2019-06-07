@@ -11,7 +11,7 @@ package backgroundservice
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
+	"github.com/seddonm1/cdproto/cdp"
 )
 
 // StartObservingParams enables event updates for the service.

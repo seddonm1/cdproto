@@ -13,8 +13,8 @@ import (
 	"context"
 	"encoding/base64"
 
-	"github.com/chromedp/cdproto/cdp"
-	"github.com/chromedp/cdproto/network"
+	"github.com/seddonm1/cdproto/cdp"
+	"github.com/seddonm1/cdproto/network"
 )
 
 // GetEncodedResponseParams returns the response body and size if it were

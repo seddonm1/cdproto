@@ -19,8 +19,8 @@ package dom
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
-	"github.com/chromedp/cdproto/runtime"
+	"github.com/seddonm1/cdproto/cdp"
+	"github.com/seddonm1/cdproto/runtime"
 )
 
 // CollectClassNamesFromSubtreeParams collects class names for the node with

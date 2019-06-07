@@ -12,7 +12,7 @@ package systeminfo
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
+	"github.com/seddonm1/cdproto/cdp"
 )
 
 // GetInfoParams returns information about the system.

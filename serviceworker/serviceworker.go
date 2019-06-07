@@ -9,7 +9,7 @@ package serviceworker
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
+	"github.com/seddonm1/cdproto/cdp"
 )
 
 // DeliverPushMessageParams [no description].

@@ -9,7 +9,7 @@ package cachestorage
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
+	"github.com/seddonm1/cdproto/cdp"
 )
 
 // DeleteCacheParams deletes a cache.

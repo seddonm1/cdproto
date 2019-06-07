@@ -5,8 +5,8 @@ package backgroundservice
 import (
 	"errors"
 
-	"github.com/chromedp/cdproto/cdp"
-	"github.com/chromedp/cdproto/serviceworker"
+	"github.com/seddonm1/cdproto/cdp"
+	"github.com/seddonm1/cdproto/serviceworker"
 	"github.com/mailru/easyjson"
 	"github.com/mailru/easyjson/jlexer"
 	"github.com/mailru/easyjson/jwriter"

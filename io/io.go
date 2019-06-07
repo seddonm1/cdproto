@@ -11,8 +11,8 @@ package io
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
-	"github.com/chromedp/cdproto/runtime"
+	"github.com/seddonm1/cdproto/cdp"
+	"github.com/seddonm1/cdproto/runtime"
 )
 
 // CloseParams close the stream, discard any temporary backing storage.

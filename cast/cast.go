@@ -12,7 +12,7 @@ package cast
 import (
 	"context"
 
-	"github.com/chromedp/cdproto/cdp"
+	"github.com/seddonm1/cdproto/cdp"
 )
 
 // EnableParams starts observing for sinks that can be used for tab

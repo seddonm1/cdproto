@@ -328,6 +328,97 @@ func (n *Node) AttributeValue(name string) string {
 	return ""
 }
 
+// jspathrecursive builds the jspath string.
+func (n *Node) jspathrecursive(stopAtDocument, stopAtID bool) string {
+	n.RLock()
+	defer n.RUnlock()
+
+	p := ""
+	pos := ""
+	id := n.AttributeValue("id")
+	switch {
+	case n.Parent == nil:
+		return n.LocalName
+
+	case stopAtDocument && n.NodeType == NodeTypeDocument:
+		return ""
+
+	case stopAtID && id != "":
+		p = "/"
+		pos = `[@id='` + id + `']`
+
+	case n.Parent != nil:
+		var i int
+		var found bool
+
+		n.Parent.RLock()
+		for j := 0; j < len(n.Parent.Children); j++ {
+			if n.Parent.Children[j].LocalName == n.LocalName {
+				i++
+			}
+			if n.Parent.Children[j].NodeID == n.NodeID {
+				found = true
+				break
+			}
+		}
+		n.Parent.RUnlock()
+
+		if found {
+			if i != 1 {
+				pos = fmt.Sprintf(":nth-child(%d)", i)
+			}
+		}
+
+		p = n.Parent.jspathrecursive(stopAtDocument, stopAtID)
+	}
+
+	if n.NodeName == "HTML" {
+		return ""
+	}
+	if n.NodeName == "BODY" {
+		return `document.querySelector("body`
+	}
+	if n.NodeType == NodeTypeDocumentFragment {
+		return fmt.Sprintf(`%s").shadowRoot.querySelector("%s%s`, p, n.LocalName, pos)
+	}
+	if n.Parent.NodeType == NodeTypeDocumentFragment {
+		return p + n.LocalName + pos
+	}
+
+	return p + " > " + n.LocalName + pos
+}
+
+// jspath builds the jspath string.
+func (n *Node) jspath(stopAtDocument, stopAtID bool) string {
+	return n.jspathrecursive(stopAtDocument, stopAtID) + `")`
+}
+
+// PartialJSPathByID returns the partial JSPath for the node, stopping at the
+// first parent with an id attribute or at nearest parent document node.
+func (n *Node) PartialJSPathByID() string {
+	return n.jspath(true, true)
+}
+
+// PartialJSPath returns the partial JSPath for the node, stopping at the nearest
+// parent document node.
+func (n *Node) PartialJSPath() string {
+	return n.jspath(true, false)
+}
+
+// FullJSPathByID returns the full JSPath for the node, stopping at the top most
+// document root or at the closest parent node with an id attribute.
+func (n *Node) FullJSPathByID() string {
+	return n.jspath(false, true)
+}
+
+// FullJSPath returns the full JSPath for the node, stopping only at the top most
+// document root.
+func (n *Node) FullJSPath() string {
+	a := n.jspath(false, false)
+	fmt.Printf("%s\n", a)
+	return a
+}
+
 // xpath builds the xpath string.
 func (n *Node) xpath(stopAtDocument, stopAtID bool) string {
 	n.RLock()
