@@ -389,8 +389,10 @@ func (n *Node) jspathrecursive(stopAtDocument, stopAtID bool) string {
 }
 
 // jspath builds the jspath string.
+// it is coalesced to behave like XPath
 func (n *Node) jspath(stopAtDocument, stopAtID bool) string {
-	return n.jspathrecursive(stopAtDocument, stopAtID) + `")`
+	jsPath := n.jspathrecursive(stopAtDocument, stopAtID) + `")`
+	return fmt.Sprintf(`%s ? [%s] : []`, jsPath, jsPath)
 }
 
 // PartialJSPathByID returns the partial JSPath for the node, stopping at the
