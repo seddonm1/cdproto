@@ -365,7 +365,7 @@ func (n *Node) jspathrecursive(stopAtDocument, stopAtID bool) string {
 
 		if found {
 			if i != 1 {
-				pos = fmt.Sprintf(":nth-child(%d)", i)
+				pos = fmt.Sprintf(":nth-of-type(%d)", i)
 			}
 		}
 
